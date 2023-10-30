@@ -17,23 +17,15 @@ class Profile(models.Model):
         return self.user.username
 
 class Post(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.CharField(max_length=100)
-    text_content = models.TextField(blank=True, null=True)  # Field for text content
-    image = models.ImageField(upload_to='post_images/', blank=True, null=True)  # Field for image
-    video = models.FileField(upload_to='post_videos/', blank=True, null=True)  # Field for video
+    image = models.ImageField(upload_to='post_images', default='default_image.jpg', null=True) 
     caption = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
     no_of_likes = models.IntegerField(default=0)
 
-    def has_image(self):
-        return self.image and hasattr(self.image, 'url') and self.image.url
-
-    def has_video(self):
-        return self.video and hasattr(self.video, 'url') and self.video.url
-
     def __str__(self):
-        return f'{self.user}\'s Post {self.id}'
+        return self.user
 
 class LikePost(models.Model):
     post_id = models.CharField(max_length=500)
@@ -48,3 +40,4 @@ class FollowersCount(models.Model):
 
     def __str__(self):
         return self.user
+
