@@ -59,17 +59,19 @@ def index(request):
 
 @login_required
 def upload(request):
+
     if request.method == 'POST':
         user = request.user.username
         image = request.FILES.get('image_upload')
-        video = request.FILES.get('video_upload')
+        caption = request.POST['caption']
 
-        new_post = Post.objects.create(user=user, image=image, video=video, caption="Your caption here")
+        new_post = Post.objects.create(user=user, image=image, caption=caption)
         new_post.save()
 
         return redirect('/')
     else:
         return redirect('/')
+
 
 
 @login_required
