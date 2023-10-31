@@ -61,11 +61,10 @@ def index(request):
 def upload(request):
     if request.method == 'POST':
         user = request.user.username
-        text_content = request.POST.get('text_content', '')  # Get text content from the form
         image = request.FILES.get('image_upload')
         video = request.FILES.get('video_upload')
 
-        new_post = Post.objects.create(user=user, text_content=text_content, image=image, video=video, caption="Your caption here")
+        new_post = Post.objects.create(user=user, image=image, video=video, caption="Your caption here")
         new_post.save()
 
         return redirect('/')
