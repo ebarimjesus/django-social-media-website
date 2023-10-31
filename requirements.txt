@@ -4,6 +4,8 @@ Pillow==9.1.0
 sqlparse==0.4.2
 gunicorn
 whitenoise
-
+django-oscar[sorl-thumbnail]
+pycountry
+pysolr
 
 
