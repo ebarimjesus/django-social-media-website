@@ -117,8 +117,7 @@ OSCAR_DELETE_IMAGE_FILES = True
 OSCAR_MISSING_IMAGE_URL = 'image_not_found.jpg'
 OSCAR_THUMBNAILER = 'oscar.core.thumbnails.SorlThumbnail'
 OSCAR_DYNAMIC_CLASS_LOADER = 'oscar.core.loading.default_class_loader'
-OSCAR_GOOGLE_ANALYTICS_ID = ''
-OSCAR_URL_SCHEMA = 'http'
+
 
 
 MIDDLEWARE = [
@@ -130,7 +129,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     'oscar.apps.basket.middleware.BasketMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
