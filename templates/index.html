@@ -179,9 +179,10 @@
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
-                                <li><a href="/settings"> Account setting </a> </li>
-                                <li><a href="logout"> Log Out</a></li>
+                                <li><a href="{% url 'catalogue:index' %}">Catalogue</a>
+                                <li><a href="/settings"> Account setting </a> </li>                               
                                 <li><a href="profile/{{user_profile}}"> View Profile</a></li> <!--add view Profile at Profile Photo -->
+                                <li><a href="logout"> Log Out</a></li>
                             </ul>
                         </div>
 

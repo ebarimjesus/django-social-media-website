@@ -15,6 +15,8 @@ import os
 
 from oscar.defaults import *
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +33,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['real-social-ym9c.onrender.com', 'wizapp.online', 'localhost']
 
 
+# Define the currency code for GBP
+
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'django_extensions',
 
     'django.contrib.sites',
     'django.contrib.flatpages',
@@ -85,6 +94,33 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+
+OSCAR_SHOP_NAME = 'Wiz Mart'
+OSCAR_SHOP_TAGLINE = ''
+OSCAR_HOMEPAGE = reverse_lazy('catalogue:index')
+OSCAR_ACCOUNTS_REDIRECT_URL = 'customer:profile-view'
+OSCAR_RECENTLY_VIEWED_PRODUCTS = 30
+OSCAR_RECENTLY_VIEWED_COOKIE_LIFETIME = 604800
+OSCAR_RECENTLY_VIEWED_COOKIE_NAME = 'oscar_history'
+OSCAR_DASHBOARD_DEFAULT_ACCESS_FUNCTION = 'oscar.apps.dashboard.nav.default_access_fn'
+OSCAR_ALLOW_ANON_CHECKOUT = False
+OSCAR_ALLOW_ANON_REVIEWS = True
+OSCAR_MODERATE_REVIEWS = False
+OSCAR_EAGER_ALERTS = True
+OSCAR_OFFER_ROUNDING_FUNCTION = 'decimal.Decimal.quantize'
+OSCAR_BASKET_COOKIE_LIFETIME = 604800
+OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 10000
+OSCAR_BASKET_COOKIE_OPEN = 'oscar_open_basket'
+
+OSCAR_IMAGE_FOLDER = 'images/products/%Y/%m/'
+OSCAR_DELETE_IMAGE_FILES = True
+OSCAR_MISSING_IMAGE_URL = 'image_not_found.jpg'
+OSCAR_THUMBNAILER = 'oscar.core.thumbnails.SorlThumbnail'
+OSCAR_DYNAMIC_CLASS_LOADER = 'oscar.core.loading.default_class_loader'
+OSCAR_GOOGLE_ANALYTICS_ID = ''
+OSCAR_URL_SCHEMA = 'http'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -157,6 +193,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -169,6 +209,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+    # Add other locale paths if needed
+]
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -215,5 +261,13 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Being processed': ('Processed', 'Cancelled',),
     'Cancelled': (),
 }
+
+OSCAR_ORDER_STATUS_CASCADE = {
+    'Being processed': 'In progress'
+}
+
+
+
+
 
 
